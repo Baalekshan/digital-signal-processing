@@ -1,0 +1,27 @@
+clc;
+clear all;
+N = 1024;
+f1 = 1;
+Fs = 200;
+n = 0 : N - 1;
+x = sin(2*pi*f1*n/Fs);
+y = x + 10*randn(1, N);
+t = [1:N]*(1/Fs);
+subplot(3, 1, 1);
+plot(x);
+title('x(n), Pure Sine Wave');
+xlabel('time, [s]');
+ylabel('Amplitude');
+grid;
+subplot(3, 1, 2);
+plot(y);
+title('y(n), pure Sine Wave + noise');
+xlabel('time, [s]');
+ylabel('Amplitude');
+grid;
+Rxy = xcorr(x, y);
+subplot(3, 1, 3);
+plot(Rxy);
+title('Cross Correlation Rxy');
+xlabel('lags')
+ylabel('Cross Correlation');
